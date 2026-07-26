@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Challois — Restaurant traditionnel à Challes</title>
+<meta name="description" content="Le Challois, restaurant de village à Challes (Sarthe). Cuisine traditionnelle française, accueil chaleureux, 4,8/5 sur 92 avis.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Le Challois",
+  "servesCuisine": "Française traditionnelle",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "31 Rue Lucien Corbin",
+    "postalCode": "72250",
+    "addressLocality": "Challes",
+    "addressCountry": "FR"
+  },
+  "telephone": "+33243842669",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "92"
+  },
+  "priceRange": "10€-20€"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream: #F3ECE0;
+    --paper: #FBF7EE;
+    --brown-deep: #3B2C21;
+    --brown-soft: #6B5744;
+    --terracotta: #C1623F;
+    --terracotta-dark: #A34F31;
+    --olive: #58654A;
+    --olive-dark: #445039;
+    --gold: #B8935A;
+    --line: rgba(59,44,33,0.14);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--cream);
+    color: var(--brown-deep);
+    font-family: 'Karla', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1,h2,h3,.font-display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color: var(--brown-deep);
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  img,svg{ display:block; max-width:100%; }
+  button{ font-family:inherit; border:none; cursor:pointer; background:none; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color: var(--terracotta-dark);
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:2px;
+    background: var(--gold);
+    display:inline-block;
+  }
+
+  /* ---------- reveal animation ---------- */
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- placeholder photo blocks ---------- */
+  .ph{
+    position:relative;
+    background:
+      repeating-linear-gradient(135deg, rgba(59,44,33,0.06) 0 2px, transparent 2px 14px),
+      linear-gradient(135deg, #E4D8C4, #CBB894);
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--brown-soft);
+    text-align:center;
+    overflow:hidden;
+  }
+  .ph span{
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    font-weight:700;
+    background: rgba(251,247,238,.82);
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid var(--line);
+  }
+
+  /* ================= NAV ================= */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    padding: 18px 0;
+    transition: background .35s ease, padding .35s ease, box-shadow .35s ease;
+  }
+  header.scrolled{
+    background: rgba(243,236,224,.92);
+    backdrop-filter: blur(8px);
+    padding: 12px 0;
+    box-shadow: 0 2px 18px rgba(59,44,33,.08);
+  }
+  nav{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ font-family:'Fraunces',serif; font-weight:700; font-size:22px; letter-spacing:-0.01em; }
+  .logo em{ font-style:italic; color: var(--terracotta); font-weight:500;}
+  .nav-links{ display:flex; gap:34px; font-size:14.5px; font-weight:600; }
+  .nav-links a{ position:relative; padding-bottom:4px; }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:2px;
+    background: var(--terracotta); transition: width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    background: var(--brown-deep); color:var(--paper);
+    padding:10px 20px; border-radius:999px; font-size:14px; font-weight:700;
+  }
+  .burger{ display:none; font-size:26px; }
+
+  @media (max-width:860px){
+    .nav-links{ display:none; }
+    .burger{ display:block; }
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    min-height: 100vh;
+    display:flex; align-items:flex-end;
+    position:relative;
+    padding: 160px 0 90px;
+    background:
+      linear-gradient(180deg, rgba(59,44,33,.15), rgba(45,32,22,.72) 70%, rgba(30,21,15,.88)),
+      repeating-linear-gradient(120deg, rgba(255,255,255,.035) 0 3px, transparent 3px 22px),
+      linear-gradient(140deg,#8A6A44,#4E3B27 55%,#2E2117);
+  }
+  .hero::after{
+    content:"PHOTO — plat signature ou salle chaleureuse du restaurant";
+    position:absolute; top:26px; right:32px;
+    font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color: rgba(251,247,238,.55); font-weight:700;
+    border:1px dashed rgba(251,247,238,.35);
+    padding:6px 10px; border-radius:8px;
+    max-width:220px; text-align:right;
+  }
+  .hero-inner{ position:relative; z-index:2; color: var(--paper); max-width:680px; }
+  .hero .eyebrow{ color: #E9C9A6; margin-bottom:22px; }
+  .hero .eyebrow::before{ background:#E9C9A6; }
+  .hero h1{
+    font-size: clamp(46px, 7vw, 84px);
+    line-height: .98;
+    color: var(--paper);
+    margin-bottom: 22px;
+  }
+  .hero h1 em{ font-style:italic; color:#E9C9A6; font-weight:500; }
+  .hero p.lead{
+    font-size: 19px;
+    color: rgba(251,247,238,.86);
+    max-width: 460px;
+    margin-bottom: 34px;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-bottom:34px; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 15px 30px; border-radius:999px;
+    font-weight:700; font-size:15px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{ background: var(--terracotta); color:#fff; box-shadow: 0 10px 26px rgba(163,79,49,.35); }
+  .btn-primary:hover{ background: var(--terracotta-dark); transform: translateY(-2px); }
+  .btn-ghost{ border:1.5px solid rgba(251,247,238,.55); color: var(--paper); }
+  .btn-ghost:hover{ background: rgba(251,247,238,.12); transform: translateY(-2px); }
+  .btn-dark{ background: var(--brown-deep); color:var(--paper); }
+  .btn-dark:hover{ background:#2b1f16; transform: translateY(-2px); }
+  .btn-outline-dark{ border:1.5px solid var(--brown-deep); color:var(--brown-deep); }
+  .btn-outline-dark:hover{ background: var(--brown-deep); color:var(--paper); }
+
+  .rating-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    background: rgba(251,247,238,.1);
+    border:1px solid rgba(251,247,238,.28);
+    padding: 10px 18px; border-radius:999px;
+    font-size:14.5px; font-weight:600; color: var(--paper);
+  }
+  .stars{ color:#E9C9A6; letter-spacing:1px; font-size:15px; }
+
+  /* ================= SECTION GENERIC ================= */
+  section{ padding: 120px 0; position:relative; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{ font-size: clamp(32px,4vw,46px); margin-top:14px; }
+
+  /* ---- Bienvenue ---- */
+  .welcome-grid{
+    display:grid; grid-template-columns: 1.05fr .95fr; gap:64px; align-items:center;
+  }
+  .welcome-grid p{ font-size:17px; color: var(--brown-soft); margin-bottom:26px; max-width:480px; }
+  .pill-list{ display:flex; flex-wrap:wrap; gap:12px; }
+  .pill{
+    background: var(--paper); border:1px solid var(--line);
+    padding:10px 18px; border-radius:999px; font-size:14px; font-weight:700;
+    display:flex; align-items:center; gap:8px;
+  }
+  .pill::before{ content:"●"; color: var(--olive); font-size:9px; }
+  .welcome-photo{ aspect-ratio: 4/5; }
+
+  @media (max-width:860px){
+    .welcome-grid{ grid-template-columns:1fr; }
+    .welcome-photo{ order:-1; aspect-ratio:16/10; }
+  }
+
+  /* ---- Specialties: chalkboard cards ---- */
+  .board-section{ background: var(--brown-deep); color: var(--paper); }
+  .board-section .eyebrow{ color:#D8B98A; }
+  .board-section .eyebrow::before{ background:#D8B98A; }
+  .board-section .section-head h2{ color: var(--paper); }
+  .board-section .section-head p{ color: rgba(251,247,238,.7); margin-top:14px; font-size:16.5px; }
+
+  .board-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:22px; }
+  .board-card{
+    background: #2C2118;
+    border: 1px solid rgba(251,247,238,.1);
+    border-radius:16px;
+    padding: 30px 24px 26px;
+    min-height: 210px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    position:relative;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+  }
+  .board-card .num{
+    font-family:'Caveat', cursive; font-size:20px; color:#D8B98A; font-weight:700;
+  }
+  .board-card h3{
+    font-family:'Caveat', cursive;
+    font-size: 34px;
+    color: var(--paper);
+    font-weight:700;
+    margin-top:14px;
+    line-height:1.1;
+  }
+  .board-card p{ color: rgba(251,247,238,.6); font-size:14.5px; margin-top:12px; }
+  .board-cta{ text-align:center; margin-top:52px; }
+
+  @media (max-width:940px){ .board-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width:560px){ .board-grid{ grid-template-columns: 1fr; } }
+
+  /* ---- Reviews ---- */
+  .reviews-top{ display:flex; align-items:center; gap:36px; margin-bottom:52px; flex-wrap:wrap; }
+  .score{
+    font-family:'Fraunces',serif; font-weight:700; font-size:64px; color: var(--terracotta);
+    line-height:1;
+  }
+  .score-sub{ font-size:14px; color: var(--brown-soft); }
+  .score-sub .stars{ color: var(--gold); }
+
+  .review-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:22px; }
+  .review-card{
+    background: var(--paper); border:1px solid var(--line); border-radius:16px;
+    padding: 28px 26px;
+  }
+  .review-card .stars{ color: var(--gold); margin-bottom:14px; display:block; }
+  .review-card p{ font-size:15.5px; color: var(--brown-deep); margin-bottom:18px; font-style:italic; }
+  .review-card .who{ font-size:13.5px; font-weight:700; color: var(--brown-soft); }
+  .review-note{
+    margin-top:20px; font-size:12.5px; color: var(--brown-soft); opacity:.75;
+  }
+
+  @media (max-width:900px){ .review-grid{ grid-template-columns:1fr; } }
+
+  /* ---- Gallery ---- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 200px 200px;
+    gap:16px;
+  }
+  .gallery-grid .ph:nth-child(1){ grid-column: span 2; grid-row: span 2; }
+  .gallery-grid .ph:nth-child(4){ grid-column: span 2; }
+
+  @media (max-width:860px){
+    .gallery-grid{ grid-template-columns: repeat(2,1fr); grid-template-rows: 160px 160px 160px; }
+    .gallery-grid .ph:nth-child(1){ grid-column: span 2; grid-row: span 1; }
+    .gallery-grid .ph:nth-child(4){ grid-column: span 1; }
+  }
+
+  /* ---- Infos pratiques ---- */
+  .info-section{ background: var(--paper); }
+  .info-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:20px; }
+  .info-card{
+    background: var(--cream); border:1px solid var(--line); border-radius:16px;
+    padding: 30px 24px;
+  }
+  .info-card .icon{ font-size:26px; margin-bottom:16px; display:block; }
+  .info-card h3{ font-size:15px; text-transform:uppercase; letter-spacing:.06em; margin-bottom:12px; }
+  .info-card p{ font-size:15px; color: var(--brown-soft); }
+  .hours-table{ width:100%; font-size:14px; color: var(--brown-soft); }
+  .hours-table tr{ border-bottom:1px dashed var(--line); }
+  .hours-table td{ padding:6px 0; }
+  .hours-table td:last-child{ text-align:right; font-weight:700; color: var(--brown-deep); }
+  .info-card .btn{ margin-top:16px; width:100%; justify-content:center; padding:12px 18px; font-size:14px; }
+
+  @media (max-width:940px){ .info-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width:560px){ .info-grid{ grid-template-columns: 1fr; } }
+
+  /* ---- Final CTA ---- */
+  .final-cta{
+    background: linear-gradient(120deg, var(--olive-dark), var(--terracotta-dark));
+    color: var(--paper);
+    text-align:center;
+    padding: 110px 0;
+  }
+  .final-cta h2{ color: var(--paper); font-size: clamp(34px,5vw,54px); margin-bottom:16px; }
+  .final-cta p{ color: rgba(251,247,238,.85); font-size:18px; margin-bottom:38px; }
+  .final-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+  /* ---- Footer ---- */
+  footer{ background: #241A12; color: rgba(251,247,238,.72); padding: 70px 0 30px; font-size:14.5px; }
+  .footer-grid{ display:grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px; }
+  .footer-grid h4{ font-family:'Fraunces',serif; color: var(--paper); font-size:19px; margin-bottom:16px; }
+  .footer-grid li{ margin-bottom:10px; }
+  .footer-grid a:hover{ color: #E9C9A6; }
+  .footer-bottom{
+    border-top: 1px solid rgba(251,247,238,.12);
+    padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:13px; color: rgba(251,247,238,.45);
+  }
+
+  @media (max-width:800px){ .footer-grid{ grid-template-columns: 1fr 1fr; } }
+
+  @media (max-width:640px){
+    section{ padding: 84px 0; }
+    .wrap{ padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#top">Le <em>Challois</em></a>
+      <ul class="nav-links">
+        <li><a href="#bienvenue">Le restaurant</a></li>
+        <li><a href="#specialites">Menu</a></li>
+        <li><a href="#avis">Avis</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#infos">Infos & accès</a></li>
+      </ul>
+      <a class="nav-cta" href="tel:0243842669">02 43 84 26 69</a>
+      <button class="burger" aria-label="Menu">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Restaurant de village · Challes, Sarthe</p>
+      <h1>Une cuisine <em>simple</em>, généreuse et de qualité.</h1>
+      <p class="lead">Au cœur de Challes, Le Challois vous accueille pour un repas traditionnel préparé avec soin, dans une ambiance chaleureuse et conviviale.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#specialites">Voir le menu</a>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=31+Rue+Lucien+Corbin+72250+Challes" target="_blank" rel="noopener">Nous trouver</a>
+      </div>
+      <div class="rating-badge">
+        <span class="stars">★★★★★</span>
+        <span>4,8/5 — 92 avis Google</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIENVENUE -->
+  <section id="bienvenue">
+    <div class="wrap">
+      <div class="welcome-grid">
+        <div class="reveal">
+          <p class="eyebrow">Bienvenue</p>
+          <h2 class="font-display">Bienvenue au Challois</h2>
+          <p style="margin-top:22px;">Le Challois est un établissement convivial de village où l'on vient avant tout pour bien manger, sans chichis. Une cuisine traditionnelle française, préparée avec soin et servie avec le sourire — c'est tout l'esprit de la maison.</p>
+          <p>Sandrine et son équipe vous reçoivent avec un accueil chaleureux qui fait la réputation du Challois bien au-delà de Challes.</p>
+          <div class="pill-list">
+            <span class="pill">Cuisine traditionnelle</span>
+            <span class="pill">Accueil chaleureux</span>
+            <span class="pill">Bon rapport qualité-prix</span>
+            <span class="pill">Ambiance conviviale</span>
+          </div>
+        </div>
+        <div class="ph welcome-photo reveal"><span>Photo — salle du restaurant</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALITES -->
+  <section id="specialites" class="board-section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Sur l'ardoise</p>
+        <h2>Ce qu'on aime cuisiner</h2>
+        <p>Le vrai menu et les tarifs seront affichés ici — voici en attendant les catégories qui font le cœur de la carte.</p>
+      </div>
+      <div class="board-grid">
+        <div class="board-card reveal">
+          <span class="num">01</span>
+          <div>
+            <h3>Cuisine traditionnelle</h3>
+            <p>Des plats familiaux, préparés maison, dans le respect des recettes de toujours.</p>
+          </div>
+        </div>
+        <div class="board-card reveal">
+          <span class="num">02</span>
+          <div>
+            <h3>Plats du jour</h3>
+            <p>Une proposition qui change régulièrement, au gré des envies et des saisons.</p>
+          </div>
+        </div>
+        <div class="board-card reveal">
+          <span class="num">03</span>
+          <div>
+            <h3>Buffet</h3>
+            <p>Un buffet généreux, régulièrement cité par les habitués parmi leurs coups de cœur.</p>
+          </div>
+        </div>
+        <div class="board-card reveal">
+          <span class="num">04</span>
+          <div>
+            <h3>Desserts maison</h3>
+            <p>Pour finir le repas en douceur, comme on l'aime en Sarthe.</p>
+          </div>
+        </div>
+      </div>
+      <div class="board-cta reveal">
+        <a class="btn btn-primary" href="#infos">Découvrir le menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <section id="avis">
+    <div class="wrap">
+      <div class="reviews-top reveal">
+        <div class="score">4,8</div>
+        <div class="score-sub">
+          <span class="stars">★★★★★</span><br>
+          92 avis Google
+        </div>
+      </div>
+      <div class="review-grid">
+        <div class="review-card reveal">
+          <span class="stars">★★★★★</span>
+          <p>« Cuisine simple et de qualité, dans une ambiance très agréable. »</p>
+          <div class="who">Client Google</div>
+        </div>
+        <div class="review-card reveal">
+          <span class="stars">★★★★★</span>
+          <p>« Sandrine est toujours très accueillante et chaleureuse. »</p>
+          <div class="who">Client Google</div>
+        </div>
+        <div class="review-card reveal">
+          <span class="stars">★★★★★</span>
+          <p>« Excellent rapport qualité-prix. »</p>
+          <div class="who">Client Google</div>
+        </div>
+      </div>
+      <p class="review-note">Témoignages inspirés des avis clients Google — non vérifiés par le site.</p>
+      <div class="board-cta reveal" style="margin-top:12px;">
+        <a class="btn btn-outline-dark" href="https://www.google.com/maps/search/?api=1&query=31+Rue+Lucien+Corbin+72250+Challes" target="_blank" rel="noopener">Voir tous les avis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section id="galerie">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">En images</p>
+        <h2>Un aperçu du Challois</h2>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="ph"><span>Plats</span></div>
+        <div class="ph"><span>Salle</span></div>
+        <div class="ph"><span>Extérieur</span></div>
+        <div class="ph"><span>Ambiance</span></div>
+        <div class="ph"><span>Équipe</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOS PRATIQUES -->
+  <section id="infos" class="info-section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Infos pratiques</p>
+        <h2>Nous trouver & nous joindre</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card reveal">
+          <span class="icon">📍</span>
+          <h3>Adresse</h3>
+          <p>31 Rue Lucien Corbin<br>72250 Challes</p>
+        </div>
+        <div class="info-card reveal">
+          <span class="icon">📞</span>
+          <h3>Téléphone</h3>
+          <p><a href="tel:0243842669">02 43 84 26 69</a></p>
+          <a class="btn btn-dark" href="tel:0243842669">Appeler</a>
+        </div>
+        <div class="info-card reveal">
+          <span class="icon">🕒</span>
+          <h3>Horaires</h3>
+          <table class="hours-table">
+            <tr><td>Lundi</td><td>À modifier</td></tr>
+            <tr><td>Mardi – Samedi</td><td>Dès 7h15</td></tr>
+            <tr><td>Dimanche</td><td>Fermé</td></tr>
+          </table>
+        </div>
+        <div class="info-card reveal">
+          <span class="icon">🚗</span>
+          <h3>Itinéraire</h3>
+          <p>Ouvrez directement l'itinéraire vers le restaurant.</p>
+          <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&query=31+Rue+Lucien+Corbin+72250+Challes" target="_blank" rel="noopener">Voir l'itinéraire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINALE -->
+  <section class="final-cta">
+    <div class="wrap reveal">
+      <h2>Une envie de bien manger ?</h2>
+      <p>Venez découvrir Le Challois à Challes.</p>
+      <div class="final-actions">
+        <a class="btn btn-dark" href="tel:0243842669">Nous appeler</a>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=31+Rue+Lucien+Corbin+72250+Challes" target="_blank" rel="noopener">Voir l'itinéraire</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Le Challois</h4>
+        <p>Restaurant traditionnel de village, à Challes, en Sarthe.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>31 Rue Lucien Corbin<br>72250 Challes</li>
+          <li><a href="tel:0243842669">02 43 84 26 69</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Horaires</h4>
+        <ul>
+          <li>Ouvert du mardi au samedi</li>
+          <li>Dès 7h15</li>
+          <li>Fermé le dimanche</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Liens</h4>
+        <ul>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=31+Rue+Lucien+Corbin+72250+Challes" target="_blank" rel="noopener">Itinéraire Google Maps</a></li>
+          <li><a href="#avis">Avis clients</a></li>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Le Challois — Challes, Sarthe</span>
+      <span>Site réalisé pour un restaurant local</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header background on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
